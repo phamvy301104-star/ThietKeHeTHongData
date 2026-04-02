@@ -42,6 +42,25 @@ def create_spark_session(app_name="WarehouseOptimization", mode="local"):
             .config("spark.driver.memory", "2g")
         )
 
+    # Fix cho Java 17+ (getSubject not supported)
+    java_opts = (
+        "--add-opens=java.base/javax.security.auth=ALL-UNNAMED "
+        "--add-opens=java.base/java.lang=ALL-UNNAMED "
+        "--add-opens=java.base/java.lang.invoke=ALL-UNNAMED "
+        "--add-opens=java.base/java.io=ALL-UNNAMED "
+        "--add-opens=java.base/java.net=ALL-UNNAMED "
+        "--add-opens=java.base/java.nio=ALL-UNNAMED "
+        "--add-opens=java.base/java.util=ALL-UNNAMED "
+        "--add-opens=java.base/java.util.concurrent=ALL-UNNAMED "
+        "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED "
+        "--add-opens=java.base/sun.security.action=ALL-UNNAMED "
+        "-Djava.security.manager=allow"
+    )
+    builder = (builder
+        .config("spark.driver.extraJavaOptions", java_opts)
+        .config("spark.executor.extraJavaOptions", java_opts)
+    )
+
     # Cấu hình tối ưu chung
     builder = (builder
         .config("spark.sql.adaptive.enabled", "true")
