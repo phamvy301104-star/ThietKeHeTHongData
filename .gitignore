@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Spark
+*.jar
+metastore_db/
+derby.log
+spark-warehouse/
+
+# Data (too large for git)
+data/raw/*.csv
+
+# Output (generated files)
+output/*.png
+output/powerbi/*.csv
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
