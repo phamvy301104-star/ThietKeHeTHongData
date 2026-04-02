@@ -53,8 +53,7 @@ def create_spark_session(app_name="WarehouseOptimization", mode="local"):
         "--add-opens=java.base/java.util=ALL-UNNAMED "
         "--add-opens=java.base/java.util.concurrent=ALL-UNNAMED "
         "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED "
-        "--add-opens=java.base/sun.security.action=ALL-UNNAMED "
-        "-Djava.security.manager=allow"
+        "--add-opens=java.base/sun.security.action=ALL-UNNAMED"
     )
     builder = (builder
         .config("spark.driver.extraJavaOptions", java_opts)
